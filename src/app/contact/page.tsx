@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Clock, Mail, Phone } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata = {
@@ -30,13 +30,8 @@ export default function ContactPage() {
 
           <div className="space-y-4">
             {[
-              { icon: Mail, title: "Email", text: "hello@greenweave.in" },
-              { icon: Phone, title: "Phone", text: "+91 98765 43210" },
-              {
-                icon: MapPin,
-                title: "Studio",
-                text: "Auroville, Tamil Nadu 605101",
-              },
+              { icon: Mail, title: "Email", text: "greenweave8@gmail.com" },
+              { icon: Phone, title: "Phone", text: "+91 89287 81563" },
               {
                 icon: Clock,
                 title: "Support hours",
