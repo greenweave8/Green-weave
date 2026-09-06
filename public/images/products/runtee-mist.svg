@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="700" viewBox="0 0 600 700" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e4f2fb"/>
+      <stop offset="1" stop-color="#fbfdff"/>
+    </linearGradient>
+    <radialGradient id="shine" cx="0.5" cy="0.3" r="0.75">
+      <stop offset="0" stop-color="rgba(255,255,255,0.55)"/>
+      <stop offset="0.55" stop-color="rgba(255,255,255,0)"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="700" fill="url(#bg)"/>
+  <text x="40" y="52" font-family="Georgia, serif" font-size="22" letter-spacing="3" fill="#0e2333">greenweave</text>
+  <ellipse cx="300" cy="560" rx="150" ry="18" fill="rgba(18,60,80,0.12)"/>
+  <g transform="translate(86,60)">
+    <path d="M176 228 L182 158 Q185 142 200 145 L252 178 L300 190 L348 178 L400 145 Q415 142 418 158 L424 228 L392 262 L368 244 L370 500 L230 500 L232 244 L208 262 Z" fill="#0e2333"/>
+    <path d="M176 228 L182 158 Q185 142 200 145 L252 178 L300 190 L348 178 L400 145 Q415 142 418 158 L424 228 L392 262 L368 244 L370 500 L230 500 L232 244 L208 262 Z" fill="url(#shine)"/>
+    <ellipse cx="395" cy="92" rx="54" ry="24" fill="#f2746d" transform="rotate(-12 395 92)"/>
+  </g>
+  <rect x="120" y="612" width="360" height="2" fill="#0e2333" opacity="0.25"/>
+  <text x="300" y="650" text-anchor="middle" font-family="system-ui, sans-serif" font-size="26" font-weight="600" fill="#0e2333" letter-spacing="2">Running Tee</text>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="700" viewBox="0 0 600 700" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eef7f1"/>
+      <stop offset="1" stop-color="#fbfefc"/>
+    </linearGradient>
+    <radialGradient id="shine" cx="0.5" cy="0.3" r="0.75">
+      <stop offset="0" stop-color="rgba(255,255,255,0.55)"/>
+      <stop offset="0.55" stop-color="rgba(255,255,255,0)"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="700" fill="url(#bg)"/>
+  <text x="40" y="52" font-family="Georgia, serif" font-size="22" letter-spacing="3" fill="#0e5a3b">greenweave</text>
+  <ellipse cx="300" cy="560" rx="150" ry="18" fill="rgba(18,60,80,0.12)"/>
+  <g transform="translate(86,60)">
+    <path d="M192 230 L206 150 Q210 132 232 138 L300 152 L368 138 Q390 132 394 150 L408 230 Q386 254 300 256 Q214 254 192 230 Z M206 198 Q222 220 300 222 Q378 220 394 198 L396 240 Q360 272 300 272 Q240 272 204 240 Z" fill="#0e5a3b"/>
+    <path d="M192 230 L206 150 Q210 132 232 138 L300 152 L368 138 Q390 132 394 150 L408 230 Q386 254 300 256 Q214 254 192 230 Z M206 198 Q222 220 300 222 Q378 220 394 198 L396 240 Q360 272 300 272 Q240 272 204 240 Z" fill="url(#shine)"/>
+    <ellipse cx="395" cy="92" rx="54" ry="24" fill="#0e5a3b" transform="rotate(-12 395 92)"/>
+  </g>
+  <rect x="120" y="612" width="360" height="2" fill="#0e5a3b" opacity="0.25"/>
+  <text x="300" y="650" text-anchor="middle" font-family="system-ui, sans-serif" font-size="26" font-weight="600" fill="#0e5a3b" letter-spacing="2">Beanie</text>
+</svg>

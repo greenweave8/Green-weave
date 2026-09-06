@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="700" viewBox="0 0 600 700" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eef8f2"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+    <radialGradient id="shine" cx="0.5" cy="0.3" r="0.75">
+      <stop offset="0" stop-color="rgba(255,255,255,0.55)"/>
+      <stop offset="0.55" stop-color="rgba(255,255,255,0)"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="700" fill="url(#bg)"/>
+  <text x="40" y="52" font-family="Georgia, serif" font-size="22" letter-spacing="3" fill="#4a6e5a">greenweave</text>
+  <ellipse cx="300" cy="560" rx="150" ry="18" fill="rgba(18,60,80,0.12)"/>
+  <g transform="translate(86,60)">
+    <path d="M178 215 L242 220 L252 500 L216 500 L206 330 L180 370 Q177 380 174 378 Z M422 215 L358 220 L348 500 L384 500 L394 330 L420 370 Q423 380 426 378 Z M300 180 Q250 185 244 240 L244 330 L356 330 L356 240 Q350 185 300 180 Z" fill="#4a6e5a"/>
+    <path d="M178 215 L242 220 L252 500 L216 500 L206 330 L180 370 Q177 380 174 378 Z M422 215 L358 220 L348 500 L384 500 L394 330 L420 370 Q423 380 426 378 Z M300 180 Q250 185 244 240 L244 330 L356 330 L356 240 Q350 185 300 180 Z" fill="url(#shine)"/>
+    <ellipse cx="395" cy="92" rx="54" ry="24" fill="#4a6e5a" transform="rotate(-12 395 92)"/>
+  </g>
+  <rect x="120" y="612" width="360" height="2" fill="#4a6e5a" opacity="0.25"/>
+  <text x="300" y="650" text-anchor="middle" font-family="system-ui, sans-serif" font-size="26" font-weight="600" fill="#4a6e5a" letter-spacing="2">Chinos</text>
+</svg>

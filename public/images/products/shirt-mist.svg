@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="700" viewBox="0 0 600 700" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe7f5"/>
+      <stop offset="1" stop-color="#eef7fc"/>
+    </linearGradient>
+    <radialGradient id="shine" cx="0.5" cy="0.3" r="0.75">
+      <stop offset="0" stop-color="rgba(255,255,255,0.55)"/>
+      <stop offset="0.55" stop-color="rgba(255,255,255,0)"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="700" fill="url(#bg)"/>
+  <text x="40" y="52" font-family="Georgia, serif" font-size="22" letter-spacing="3" fill="#3a5a72">greenweave</text>
+  <ellipse cx="300" cy="560" rx="150" ry="18" fill="rgba(18,60,80,0.12)"/>
+  <g transform="translate(86,60)">
+    <path d="M172 240 L182 170 Q186 152 204 156 L252 190 L282 212 Q286 214 290 212 L322 182 L396 156 Q414 152 418 170 L428 240 L394 272 L368 252 L368 500 L232 500 L232 252 L206 272 Z" fill="#3a5a72"/>
+    <path d="M172 240 L182 170 Q186 152 204 156 L252 190 L282 212 Q286 214 290 212 L322 182 L396 156 Q414 152 418 170 L428 240 L394 272 L368 252 L368 500 L232 500 L232 252 L206 272 Z" fill="url(#shine)"/>
+    <ellipse cx="395" cy="92" rx="54" ry="24" fill="#3a5a72" transform="rotate(-12 395 92)"/>
+  </g>
+  <rect x="120" y="612" width="360" height="2" fill="#3a5a72" opacity="0.25"/>
+  <text x="300" y="650" text-anchor="middle" font-family="system-ui, sans-serif" font-size="26" font-weight="600" fill="#3a5a72" letter-spacing="2">Linen Shirt</text>
+</svg>

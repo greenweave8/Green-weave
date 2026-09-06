@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="700" viewBox="0 0 600 700" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e9f5fb"/>
+      <stop offset="1" stop-color="#fbfdff"/>
+    </linearGradient>
+    <radialGradient id="shine" cx="0.5" cy="0.3" r="0.75">
+      <stop offset="0" stop-color="rgba(255,255,255,0.55)"/>
+      <stop offset="0.55" stop-color="rgba(255,255,255,0)"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="700" fill="url(#bg)"/>
+  <text x="40" y="52" font-family="Georgia, serif" font-size="22" letter-spacing="3" fill="#255b86">greenweave</text>
+  <ellipse cx="300" cy="560" rx="150" ry="18" fill="rgba(18,60,80,0.12)"/>
+  <g transform="translate(86,60)">
+    <path d="M172 232 L180 162 Q182 148 198 150 L300 168 L402 150 Q418 148 420 162 L428 232 L394 266 L370 248 L370 500 L230 500 L230 248 L206 266 Z" fill="#255b86"/>
+    <path d="M172 232 L180 162 Q182 148 198 150 L300 168 L402 150 Q418 148 420 162 L428 232 L394 266 L370 248 L370 500 L230 500 L230 248 L206 266 Z" fill="url(#shine)"/>
+    <ellipse cx="395" cy="92" rx="54" ry="24" fill="#255b86" transform="rotate(-12 395 92)"/>
+  </g>
+  <rect x="120" y="612" width="360" height="2" fill="#255b86" opacity="0.25"/>
+  <text x="300" y="650" text-anchor="middle" font-family="system-ui, sans-serif" font-size="26" font-weight="600" fill="#255b86" letter-spacing="2">Merino Polo</text>
+</svg>
