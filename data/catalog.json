@@ -30,6 +30,12 @@
       "name": "Basics",
       "slug": "basics",
       "description": "The essentials you wear on repeat."
+    },
+    {
+      "id": "c_mtrfeg936l2l8n",
+      "name": "Footwear",
+      "slug": "footwear",
+      "description": "Test category for push button"
     }
   ]
 }
