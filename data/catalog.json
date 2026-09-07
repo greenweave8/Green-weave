@@ -1,36 +1,6 @@
 {
   "products": [
     {
-      "id": "organic-cotton-tote",
-      "name": "Organic Cotton Grocery Tote",
-      "slug": "organic-cotton-grocery-tote",
-      "categoryId": "accessories",
-      "price": 299,
-      "mrp": 399,
-      "description": "A sturdy, washable tote that folds into its own pocket. Perfect for groceries, gym, or every errand in between.",
-      "sustainability": [
-        "Organic Cotton",
-        "Reusable",
-        "Zero Waste"
-      ],
-      "images": [
-        "/images/products/tote-seafoam.svg"
-      ],
-      "sizes": [
-        "One Size"
-      ],
-      "colors": [
-        "Seafoam",
-        "Mist",
-        "Natural"
-      ],
-      "rating": 4.5,
-      "reviews": 156,
-      "stock": 200,
-      "featured": false,
-      "createdAt": "2026-02-10"
-    },
-    {
       "id": "oversized-organic-blazer",
       "name": "Oversized Organic Wool Blazer",
       "slug": "oversized-organic-blazer",
