@@ -1,41 +1,6 @@
 {
   "products": [
     {
-      "id": "oversized-organic-blazer",
-      "name": "Oversized Organic Wool Blazer",
-      "slug": "oversized-organic-blazer",
-      "categoryId": "womenswear",
-      "price": 2499,
-      "mrp": 3299,
-      "description": "A sharp, intentionally oversized blazer in traceable organic wool. The single piece that upgrades everything it touches.",
-      "sustainability": [
-        "Traceable Wool",
-        "Cruelty Free",
-        "Timeless Design"
-      ],
-      "images": [
-        "/images/products/blazer-mist.svg"
-      ],
-      "sizes": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "colors": [
-        "Mist",
-        "Stone",
-        "Black"
-      ],
-      "rating": 4.7,
-      "reviews": 94,
-      "stock": 40,
-      "featured": false,
-      "badge": "Premium",
-      "createdAt": "2026-01-15"
-    },
-    {
       "id": "hemp-workday-chinos",
       "name": "Hemp Workday Chinos",
       "slug": "hemp-workday-chinos",
