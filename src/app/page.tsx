@@ -9,28 +9,22 @@ import {
   Sparkles,
 } from "lucide-react";
 import { getProducts, getCategories } from "@/lib/db";
+import { getContent } from "@/lib/content";
 import ProductCard from "@/components/ProductCard";
 import NewsletterForm from "@/components/NewsletterForm";
 
-export const metadata = {
-  title: "Greenweave — Clothes that heal the Earth",
-};
-
 export const dynamic = "force-dynamic";
 
-const marqueeItems = [
-  "100% organic cotton",
-  "recycled ocean plastic",
-  "fair trade studios",
-  "one tree per order",
-  "low-water dyeing",
-  "plastic-free packaging",
-];
+export async function generateMetadata() {
+  const content = await getContent();
+  return { title: content["brand.metaTitle"] };
+}
 
 export default async function HomePage() {
-  const [products, categories] = await Promise.all([
+  const [products, categories, content] = await Promise.all([
     getProducts(),
     getCategories(),
+    getContent(),
   ]);
 
   const featured = products.filter((p) => p.featured).slice(0, 4);
@@ -38,6 +32,35 @@ export default async function HomePage() {
     .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1))
     .slice(0, 4);
   const categoryCards = categories.slice(0, 4);
+
+  const marqueeItems = content["home.marqueeItems"]
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+
+  const heroStats: [string, string][] = [
+    ["home.heroStat1", "home.heroStat1Label"],
+    ["home.heroStat2", "home.heroStat2Label"],
+    ["home.heroStat3", "home.heroStat3Label"],
+  ].map(([v, l]) => [content[v], content[l]]);
+
+  const pillars = [
+    { icon: Leaf, title: content["home.pillar1Title"], text: content["home.pillar1Text"] },
+    { icon: Droplets, title: content["home.pillar2Title"], text: content["home.pillar2Text"] },
+    { icon: Recycle, title: content["home.pillar3Title"], text: content["home.pillar3Text"] },
+    { icon: ShieldCheck, title: content["home.pillar4Title"], text: content["home.pillar4Text"] },
+  ];
+
+  const impactStats: [string, string][] = [1, 2, 3, 4, 5, 6].map((i) => [
+    content[`home.impactStat${i}`],
+    content[`home.impactStat${i}Label`],
+  ]);
+
+  const testimonials = [1, 2, 3].map((i) => ({
+    name: content[`home.testimonial${i}Name`],
+    role: content[`home.testimonial${i}Role`],
+    text: content[`home.testimonial${i}Text`],
+  }));
 
   return (
     <>
@@ -52,41 +75,37 @@ export default async function HomePage() {
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-28">
           <div>
             <span className="inline-flex -rotate-1 items-center gap-2 rounded-full bg-seafoam/10 px-4 py-1.5 text-xs font-semibold text-seafoam ring-1 ring-seafoam/20">
-              <Sparkles className="h-4 w-4" /> autumn drop 2026 · now live
+              <Sparkles className="h-4 w-4" /> {content["home.heroBadge"]}
             </span>
             <h1 className="mt-6 text-5xl font-black leading-[0.95] tracking-tight text-white sm:text-6xl lg:text-7xl">
-              Wear your
+              {content["home.heroTitleLine1"]}
               <br />
-              <span className="text-seafoam">values</span>{" "}
-              <span className="italic text-seafoam/70">thread</span>
-              <br />by thread.
+              <span className="text-seafoam">{content["home.heroTitleAccent"]}</span>{" "}
+              <span className="italic text-seafoam/70">{content["home.heroTitleAccent2"]}</span>
+              <br />
+              {content["home.heroTitleLine3"]}
             </h1>
             <p className="mt-6 max-w-md text-lg leading-relaxed text-seafoam/70">
-              Organic cotton, hemp and recycled ocean plastic — cut in small
-              batches and stitched with care in Auroville.
+              {content["home.heroSubtitle"]}
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <Link
                 href="/shop"
                 className="group inline-flex items-center gap-2 rounded-full bg-seafoam px-8 py-4 text-sm font-bold text-forest-night transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-seafoam/20"
               >
-                Shop the collection
+                {content["home.heroCtaPrimary"]}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
                 href="/about"
                 className="inline-flex items-center gap-2 rounded-full border border-seafoam/30 px-8 py-4 text-sm font-semibold text-seafoam transition-colors hover:bg-seafoam/10"
               >
-                Our mission
+                {content["home.heroCtaSecondary"]}
               </Link>
             </div>
 
             <div className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-seafoam/15 pt-8">
-              {[
-                ["50L", "water saved per piece"],
-                ["120k", "bottles recycled"],
-                ["1:1", "trees planted"],
-              ].map(([value, label]) => (
+              {heroStats.map(([value, label]) => (
                 <div key={label}>
                   <p className="display text-3xl font-black text-seafoam">
                     {value}
@@ -111,13 +130,11 @@ export default async function HomePage() {
                 />
               </div>
             </div>
-            <div className="absolute -left-6 top-10 rotate-[-4deg] rounded-2xl bg-white/95 px-5 py-3 font-hand text-lg text-forest-night shadow-lg">
-              feels as good
-              <br />
-              as it does good ☘
+            <div className="absolute -left-6 top-10 rotate-[-4deg] whitespace-pre-line rounded-2xl bg-white/95 px-5 py-3 font-hand text-lg text-forest-night shadow-lg">
+              {content["home.heroSticker1"]}
             </div>
             <div className="absolute -right-4 bottom-12 rotate-[3deg] rounded-2xl bg-seafoam px-5 py-3 font-hand text-lg text-forest-night shadow-lg">
-              2,400 trees planted this week 🌱
+              {content["home.heroSticker2"]}
             </div>
           </div>
         </div>
@@ -144,35 +161,14 @@ export default async function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-xl text-center">
             <span className="font-hand -rotate-2 text-2xl text-forest">
-              why greenweave
+              {content["home.pillarsEyebrow"]}
             </span>
             <h2 className="mt-2 text-3xl font-extrabold text-ink sm:text-4xl">
-              Better for you, better for Earth
+              {content["home.pillarsTitle"]}
             </h2>
           </div>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                icon: Leaf,
-                title: "Organic fibres",
-                text: "GOTS-certified cotton, hemp and bamboo — no pesticides, no GMOs.",
-              },
-              {
-                icon: Droplets,
-                title: "Low-water dyeing",
-                text: "Up to 40% less water and zero toxic runoff into rivers.",
-              },
-              {
-                icon: Recycle,
-                title: "Circular by design",
-                text: "Recycled bottles and regenerated fabrics in every drop.",
-              },
-              {
-                icon: ShieldCheck,
-                title: "Fair & ethical",
-                text: "Fair-trade wages in transparent, safe workplaces.",
-              },
-            ].map(({ icon: Icon, title, text }, i) => (
+            {pillars.map(({ icon: Icon, title, text }, i) => (
               <div
                 key={title}
                 className={`group rounded-3xl border border-mist bg-white p-7 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg rotate-[${
@@ -199,17 +195,17 @@ export default async function HomePage() {
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <span className="font-hand -rotate-2 text-2xl text-forest">
-              crowd favourites
+              {content["home.bestsellersEyebrow"]}
             </span>
             <h2 className="mt-1 text-3xl font-extrabold text-ink sm:text-4xl">
-              You&apos;ll love the feel
+              {content["home.bestsellersTitle"]}
             </h2>
           </div>
           <Link
             href="/shop"
             className="group inline-flex items-center gap-1 text-sm font-semibold text-forest hover:underline"
           >
-            View all
+            {content["home.bestsellersLink"]}
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
@@ -230,10 +226,10 @@ export default async function HomePage() {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-xl text-center">
             <span className="font-hand -rotate-2 text-2xl text-seafoam">
-              find your staple
+              {content["home.categoriesEyebrow"]}
             </span>
             <h2 className="mt-2 text-3xl font-extrabold sm:text-4xl">
-              Shop by category
+              {content["home.categoriesTitle"]}
             </h2>
           </div>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -263,7 +259,7 @@ export default async function HomePage() {
                       {category.name}
                     </h3>
                     <p className="mt-1 flex items-center gap-1.5 text-sm text-seafoam/80">
-                      Shop now <ArrowRight className="h-4 w-4" />
+                      {content["home.categoriesCta"]} <ArrowRight className="h-4 w-4" />
                     </p>
                   </div>
                 </Link>
@@ -281,33 +277,24 @@ export default async function HomePage() {
           <div className="relative grid items-center gap-10 lg:grid-cols-2">
             <div>
               <span className="font-hand -rotate-2 text-2xl text-forest">
-                our promise
+                {content["home.impactEyebrow"]}
               </span>
               <h2 className="mt-2 text-3xl font-extrabold text-forest-night sm:text-4xl">
-                One tree planted for every order
+                {content["home.impactTitle"]}
               </h2>
               <p className="mt-4 max-w-lg leading-relaxed text-forest-night/70">
-                We partner with grassroots reforestation groups across India.
-                Your purchase funds a tree — and our recycled paper packaging
-                means the only thing we send out is good clothes.
+                {content["home.impactText"]}
               </p>
               <Link
                 href="/about"
                 className="group mt-7 inline-flex items-center gap-2 rounded-full bg-forest-night px-8 py-4 text-sm font-bold text-seafoam transition-all hover:-translate-y-0.5 hover:shadow-xl"
               >
-                Read our story
+                {content["home.impactCta"]}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-              {[
-                ["38k", "orders shipped"],
-                ["96%", "customers repurchase"],
-                ["4.8★", "average rating"],
-                ["8.4k", "trees planted"],
-                ["120k", "bottles recycled"],
-                ["50L", "water saved per piece"],
-              ].map(([value, label], i) => (
+              {impactStats.map(([value, label], i) => (
                 <div
                   key={label}
                   className={`rounded-3xl bg-white/70 p-5 shadow-sm backdrop-blur ${
@@ -330,17 +317,17 @@ export default async function HomePage() {
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <span className="font-hand -rotate-2 text-2xl text-forest">
-              just landed
+              {content["home.arrivalsEyebrow"]}
             </span>
             <h2 className="mt-1 text-3xl font-extrabold text-ink sm:text-4xl">
-              New arrivals
+              {content["home.arrivalsTitle"]}
             </h2>
           </div>
           <Link
             href="/shop"
             className="group inline-flex items-center gap-1 text-sm font-semibold text-forest hover:underline"
           >
-            See everything
+            {content["home.arrivalsLink"]}
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
@@ -356,30 +343,14 @@ export default async function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-xl text-center">
             <span className="font-hand -rotate-2 text-2xl text-forest">
-              love notes
+              {content["home.testimonialsEyebrow"]}
             </span>
             <h2 className="mt-2 text-3xl font-extrabold text-ink sm:text-4xl">
-              Worn, loved, and re-worn
+              {content["home.testimonialsTitle"]}
             </h2>
           </div>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {[
-              {
-                name: "Priya S.",
-                role: "yoga teacher",
-                text: "The leggings survived 20+ classes and still look new. Knowing they're made from ocean plastic makes them my favourite.",
-              },
-              {
-                name: "Arjun M.",
-                role: "architect",
-                text: "Softest organic tees I've ever worn, and they arrived in beautiful paper packaging. Ethics aside, the feel is unreal.",
-              },
-              {
-                name: "Neha K.",
-                role: "photographer",
-                text: "Finally a brand that cares. I love scanning the QR to trace where every piece came from. This is the future.",
-              },
-            ].map((t, i) => (
+            {testimonials.map((t, i) => (
               <figure
                 key={t.name}
                 className={`rounded-3xl border border-mist bg-white p-8 shadow-sm ${
@@ -413,14 +384,13 @@ export default async function HomePage() {
           <div className="pointer-events-none absolute -bottom-20 -right-10 h-72 w-72 rounded-full bg-forest-deep-2/60 blur-3xl" />
           <div className="relative">
             <span className="font-hand -rotate-2 text-2xl text-seafoam">
-              join the grove
+              {content["home.newsletterEyebrow"]}
             </span>
             <h2 className="mt-2 text-4xl font-extrabold text-white">
-              Get 10% off your first order
+              {content["home.newsletterTitle"]}
             </h2>
             <p className="mx-auto mt-4 max-w-md text-seafoam/70">
-              Drops, giveaways and a small seeding of good news. No spam, just
-              seeds.
+              {content["home.newsletterText"]}
             </p>
             <NewsletterForm dark />
           </div>

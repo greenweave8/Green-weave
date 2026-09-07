@@ -14,7 +14,11 @@ const links = [
   { href: "/contact", label: "Contact" },
 ];
 
-export default function Navbar() {
+export default function Navbar({
+  tagline = "small batches, big change",
+}: {
+  tagline?: string;
+}) {
   const { count } = useCart();
   const { user, loading, logout } = useUser();
   const [open, setOpen] = useState(false);
@@ -36,7 +40,7 @@ export default function Navbar() {
             greenweave
           </span>
           <span className="hidden -rotate-3 font-hand text-base text-forest md:inline">
-            small batches, big change
+            {tagline}
           </span>
         </Link>
 

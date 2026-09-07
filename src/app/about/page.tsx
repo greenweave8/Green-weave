@@ -1,12 +1,32 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Droplets, Handshake, Leaf, Recycle, Sprout, TreePine } from "lucide-react";
+import { getContent } from "@/lib/content";
 
-export const metadata = {
-  title: "About Us",
-};
+export const dynamic = "force-dynamic";
 
-export default function AboutPage() {
+export async function generateMetadata() {
+  const content = await getContent();
+  return { title: content["about.title"] };
+}
+
+export default async function AboutPage() {
+  const content = await getContent();
+
+  const promises = [
+    { icon: Sprout, title: content["about.promise1Title"], text: content["about.promise1Text"] },
+    { icon: Droplets, title: content["about.promise2Title"], text: content["about.promise2Text"] },
+    { icon: Recycle, title: content["about.promise3Title"], text: content["about.promise3Text"] },
+    { icon: Leaf, title: content["about.promise4Title"], text: content["about.promise4Text"] },
+    { icon: TreePine, title: content["about.promise5Title"], text: content["about.promise5Text"] },
+    { icon: Handshake, title: content["about.promise6Title"], text: content["about.promise6Text"] },
+  ];
+
+  const impactStats: [string, string][] = [1, 2, 3, 4].map((i) => [
+    content[`about.impactStat${i}`],
+    content[`about.impactStat${i}Label`],
+  ]);
+
   return (
     <>
       <section className="relative overflow-hidden bg-forest-night">
@@ -16,20 +36,17 @@ export default function AboutPage() {
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-24">
           <div>
             <span className="font-hand -rotate-2 text-2xl text-seafoam">
-              a small studio
+              {content["about.eyebrow"]}
             </span>
             <h1 className="display mt-2 text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
-              Weaving a kinder wardrobe.
+              {content["about.title"]}
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/80">
-              Greenweave started in 2021 with one stubborn belief: your clothes
-              shouldn&apos;t cost the Earth. Today we make small-batch essentials
-              in Auroville, Tamil Nadu, from fibres grown and recycled with
-              care.
+              {content["about.text"]}
             </p>
             <div className="mt-6">
               <span className="inline-flex rotate-1 items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 font-hand text-xl text-seafoam">
-                🌱 slow fashion, done properly
+                {content["about.badge"]}
               </span>
             </div>
           </div>
@@ -46,45 +63,14 @@ export default function AboutPage() {
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="text-center">
           <span className="font-hand -rotate-2 text-2xl text-forest">
-            how we do it
+            {content["about.promisesEyebrow"]}
           </span>
           <h2 className="display mt-1 text-3xl font-extrabold text-ink sm:text-4xl">
-            The Greenweave promise
+            {content["about.promisesTitle"]}
           </h2>
         </div>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            {
-              icon: Sprout,
-              title: "Organic, always",
-              text: "GOTS-certified organic cotton, European flax hemp and bamboo viscose. No pesticides, no GMOs, no shortcuts.",
-            },
-            {
-              icon: Droplets,
-              title: "Water and dyes, re-thought",
-              text: "Low-water dyeing and natural indigo save up to 40% water per garment, with zero toxic runoff.",
-            },
-            {
-              icon: Recycle,
-              title: "Plastic that comes full circle",
-              text: "Every recycled-polyester piece turns discarded bottles and ocean plastic into fabric you'll love wearing.",
-            },
-            {
-              icon: Leaf,
-              title: "Small batches, real traceability",
-              text: "We cut in small batches and tag every garment so you can trace it back to the mill and the hands that made it.",
-            },
-            {
-              icon: TreePine,
-              title: "One tree per order",
-              text: "Every single order funds a native tree planted with grassroots groups across India.",
-            },
-            {
-              icon: Handshake,
-              title: "Fair from first stitch",
-              text: "Fair-trade wages, safe studios, and long-term partnerships with our makers in Tamil Nadu.",
-            },
-          ].map(({ icon: Icon, title, text }, i) => (
+          {promises.map(({ icon: Icon, title, text }, i) => (
             <div
               key={title}
               className="group rounded-3xl border border-mist bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-seafoam hover:shadow-xl hover:shadow-forest/5"
@@ -105,29 +91,23 @@ export default function AboutPage() {
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <div>
               <span className="font-hand -rotate-2 text-2xl text-forest">
-                the receipts, not just the vibes
+                {content["about.impactEyebrow"]}
               </span>
               <h2 className="display mt-1 text-3xl font-extrabold text-ink sm:text-4xl">
-                2025 impact, in plain numbers
+                {content["about.impactTitle"]}
               </h2>
               <p className="mt-4 leading-relaxed text-ink/70">
-                We won&apos;t hide behind vague claims — here&apos;s exactly what
-                our community achieved together last year.
+                {content["about.impactText"]}
               </p>
               <Link
                 href="/shop"
                 className="mt-6 inline-flex items-center gap-2 rounded-full bg-forest px-7 py-3.5 text-sm font-semibold text-white shadow-md shadow-forest/20 hover:bg-forest-dark"
               >
-                Shop our collection
+                {content["about.impactCta"]}
               </Link>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              {[
-                ["4.2L", "litres of water saved"],
-                ["96k", "bottles turned to fibre"],
-                ["8,400", "trees planted"],
-                ["1,200", "fair-wage jobs supported"],
-              ].map(([value, label], i) => (
+              {impactStats.map(([value, label], i) => (
                 <div
                   key={label}
                   className="rounded-3xl bg-white p-6 shadow-sm transition-transform duration-300 hover:-translate-y-1"
@@ -144,19 +124,19 @@ export default function AboutPage() {
 
       <section className="mx-auto max-w-7xl px-4 py-16 text-center sm:px-6 lg:px-8">
         <span className="font-hand -rotate-2 text-2xl text-forest">
-          got the itch?
+          {content["about.ctaEyebrow"]}
         </span>
         <h2 className="display mt-1 text-3xl font-extrabold text-ink sm:text-4xl">
-          Curious about a wardrobe that heals?
+          {content["about.ctaTitle"]}
         </h2>
         <p className="mx-auto mt-3 max-w-lg text-ink/60">
-          Explore pieces that feel as good as they do good.
+          {content["about.ctaText"]}
         </p>
         <Link
           href="/shop"
           className="mt-6 inline-flex items-center gap-2 rounded-full bg-forest px-8 py-3.5 text-sm font-semibold text-white shadow-md shadow-forest/20 hover:bg-forest-dark"
         >
-          Start shopping
+          {content["about.ctaButton"]}
         </Link>
       </section>
     </>

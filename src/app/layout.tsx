@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/components/cart/CartProvider";
 import { UserProvider } from "@/components/auth/UserProvider";
+import { getContent } from "@/lib/content";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,7 +42,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export const dynamic = "force-dynamic";
+
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const content = await getContent();
   return (
     <html
       lang="en"
@@ -50,9 +54,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-full flex-col bg-white text-ink selection:bg-seafoam selection:text-forest-dark">
         <CartProvider>
           <UserProvider>
-            <Navbar />
+            <Navbar tagline={content["brand.tagline"]} />
             <main className="flex-1">{children}</main>
-            <Footer />
+            <Footer content={content} />
           </UserProvider>
         </CartProvider>
       </body>

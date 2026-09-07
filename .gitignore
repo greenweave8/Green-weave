@@ -20,8 +20,12 @@
 # production
 /build
 
-# local runtime data
-/data/
+# local runtime data (orders, users, uploads stay out of git; the
+# product catalog and site content are version controlled so they sync
+# to the repo)
+/data/*
+!/data/catalog.json
+!/data/content.json
 
 # user uploads
 /public/uploads/

@@ -11,12 +11,26 @@ interface ShopClientProps {
   products: Product[];
   categories: Category[];
   initialCategory: string;
+  copy?: {
+    eyebrow: string;
+    title: string;
+    searchPlaceholder: string;
+    emptyTitle: string;
+    emptyText: string;
+  };
 }
 
 export default function ShopClient({
   products,
   categories,
   initialCategory,
+  copy = {
+    eyebrow: "the whole collection",
+    title: "Shop the grove",
+    searchPlaceholder: "Search organic cotton…",
+    emptyTitle: "No pieces match those filters",
+    emptyText: "Try widening your search.",
+  },
 }: ShopClientProps) {
   const [category, setCategory] = useState(initialCategory);
   const [query, setQuery] = useState("");
@@ -128,10 +142,10 @@ export default function ShopClient({
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <span className="font-hand -rotate-2 text-2xl text-forest">
-            the whole collection
+            {copy.eyebrow}
           </span>
           <h1 className="display mt-1 text-4xl font-extrabold text-ink sm:text-5xl">
-            Shop the grove
+            {copy.title}
           </h1>
           <p className="mt-2 text-sm text-ink/60">
             {products.length} sustainable pieces ·{" "}
@@ -146,7 +160,7 @@ export default function ShopClient({
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search organic cotton…"
+              placeholder={copy.searchPlaceholder}
               className="w-full bg-transparent py-2.5 text-sm outline-none"
             />
           </div>
@@ -186,10 +200,10 @@ export default function ShopClient({
           {filtered.length === 0 ? (
             <div className="rounded-2xl border border-dashed border-mist-deep py-20 text-center">
               <p className="text-lg font-semibold text-ink">
-                No pieces match those filters
+                {copy.emptyTitle}
               </p>
               <p className="mt-1 text-sm text-ink/60">
-                Try widening your search.
+                {copy.emptyText}
               </p>
             </div>
           ) : (

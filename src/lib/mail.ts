@@ -159,4 +159,53 @@ export async function sendOrderVerificationMail(opts: {
   }
 }
 
+export async function sendContactMail(opts: {
+  to: string;
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}): Promise<void> {
+  requireMail();
+  const { to, name, email, subject, message } = opts;
+  if (!to) {
+    throw new Error("No receiver email configured (ORDER_VERIFY_EMAIL).");
+  }
+  const resend = new Resend(API_KEY);
+  const sendOpts = {
+    from: SENDER_EMAIL || "Greenweave <onboarding@resend.dev>",
+    to,
+    replyTo: email,
+    subject: `Contact form: ${subject || "New message"} — ${name}`,
+    text: [
+      `New message from the Greenweave contact page:`,
+      ``,
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Subject: ${subject || "(none)"}`,
+      ``,
+      `Message:`,
+      message,
+      ``,
+      `— Reply to this email to reach ${name}.`,
+    ].join("\n"),
+    html: `
+      <div style="font-family:Arial,Helvetica,sans-serif;max-width:520px;margin:0 auto;color:#16303f">
+        <h2 style="color:#0e8a5b">New contact message</h2>
+        <table style="border-collapse:collapse;width:100%;background:#fafaf6;border:1px solid #eef4f1">
+          <tr><td style="padding:8px 14px;color:#666">Name</td><td style="padding:8px 14px;font-weight:700">${name}</td></tr>
+          <tr><td style="padding:8px 14px;color:#666">Email</td><td style="padding:8px 14px"><a href="mailto:${email}" style="color:#0e8a5b">${email}</a></td></tr>
+          <tr><td style="padding:8px 14px;color:#666">Subject</td><td style="padding:8px 14px">${subject || "(none)"}</td></tr>
+        </table>
+        <p style="background:#fafaf6;border:1px solid #eef4f1;border-radius:10px;padding:14px;white-space:pre-wrap">${message}</p>
+        <p style="color:#888;font-size:12px">Reply to this email to reach ${name}.</p>
+      </div>
+    `,
+  };
+  const { error } = await resend.emails.send(sendOpts);
+  if (error) {
+    throw new Error(error.message ?? "Resend failed to send the mail.");
+  }
+}
+
 export { ORDER_VERIFY_EMAIL };

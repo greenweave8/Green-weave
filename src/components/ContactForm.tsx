@@ -4,16 +4,35 @@ import { useState } from "react";
 import { CheckCircle2, Loader2, Send } from "lucide-react";
 
 export default function ContactForm() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function submit(e: React.FormEvent<HTMLFormElement>) {
+  async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setSending(true);
-    setTimeout(() => {
-      setSending(false);
+    setError(null);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, subject, message }),
+      });
+      const data = (await res.json()) as { message?: string; error?: string };
+      if (!res.ok) {
+        setError(data.error ?? "Something went wrong. Please try again.");
+        return;
+      }
       setSent(true);
-    }, 900);
+    } catch {
+      setError("Network error. Please try again.");
+    } finally {
+      setSending(false);
+    }
   }
 
   if (sent) {
@@ -22,8 +41,8 @@ export default function ContactForm() {
         <CheckCircle2 className="h-14 w-14 text-forest" />
         <h2 className="mt-4 text-xl font-bold text-ink">Message sent!</h2>
         <p className="mt-2 max-w-sm text-ink/60">
-          Thanks for reaching out. We&apos;ll get back to you within one working
-          day.
+          Thanks for reaching out. We&apos;ll get back to you at {email} within
+          one working day.
         </p>
       </div>
     );
@@ -42,6 +61,8 @@ export default function ContactForm() {
           </label>
           <input
             required
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             className="mt-1.5 w-full rounded-full border border-mist-deep bg-mist/40 px-4 py-3 text-sm outline-none transition-all focus:border-forest focus:bg-white focus:ring-2 focus:ring-seafoam"
             placeholder="Your name"
           />
@@ -53,6 +74,8 @@ export default function ContactForm() {
           <input
             required
             type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="mt-1.5 w-full rounded-full border border-mist-deep bg-mist/40 px-4 py-3 text-sm outline-none transition-all focus:border-forest focus:bg-white focus:ring-2 focus:ring-seafoam"
             placeholder="you@email.com"
           />
@@ -62,6 +85,8 @@ export default function ContactForm() {
             Subject
           </label>
           <input
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
             className="mt-1.5 w-full rounded-full border border-mist-deep bg-mist/40 px-4 py-3 text-sm outline-none transition-all focus:border-forest focus:bg-white focus:ring-2 focus:ring-seafoam"
             placeholder="How can we help?"
           />
@@ -73,11 +98,20 @@ export default function ContactForm() {
           <textarea
             required
             rows={5}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
             className="mt-1.5 w-full rounded-3xl border border-mist-deep bg-mist/40 px-4 py-3 text-sm outline-none transition-all focus:border-forest focus:bg-white focus:ring-2 focus:ring-seafoam"
             placeholder="Write your message here…"
           />
         </div>
       </div>
+
+      {error && (
+        <p className="mt-4 rounded-xl bg-red-50 px-4 py-2.5 text-sm font-medium text-red-600">
+          {error}
+        </p>
+      )}
+
       <button
         type="submit"
         disabled={sending}
