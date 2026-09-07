@@ -1,5 +1,32 @@
 {
-  "products": [],
+  "products": [
+    {
+      "id": "p_mtrfsitht2fmcg",
+      "name": "T-Shirt",
+      "slug": "t-shirt",
+      "categoryId": "menswear",
+      "price": 800,
+      "mrp": 1000,
+      "description": "",
+      "sustainability": [],
+      "images": [
+        "/images/products/tee-mist.svg"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [],
+      "rating": 0,
+      "reviews": 0,
+      "stock": 10,
+      "featured": true,
+      "createdAt": "2026-09-07"
+    }
+  ],
   "categories": [
     {
       "id": "womenswear",
