@@ -1,0 +1,407 @@
+{
+  "products": [
+    {
+      "id": "recycled-hooded-sweatshirt",
+      "name": "random aahh tshirt",
+      "slug": "recycled-hooded-sweatshirt",
+      "categoryId": "menswear",
+      "price": 1499,
+      "mrp": 1899,
+      "description": "A heavyweight hoodie spun from regenerated cotton and recycled polyester. Brushed inside, durable outside, and gentle on the planet.",
+      "sustainability": [
+        "Recycled Polyester",
+        "40% Less Water",
+        "Plastic Free Packaging"
+      ],
+      "images": [
+        "/images/products/hoodie-seafoam.svg"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Seafoam",
+        "Forest",
+        "Charcoal"
+      ],
+      "rating": 4.7,
+      "reviews": 268,
+      "stock": 85,
+      "featured": true,
+      "badge": "New",
+      "createdAt": "2026-02-03"
+    },
+    {
+      "id": "linen-blend-draped-shirt",
+      "name": "Linen Blend Draped Shirt",
+      "slug": "linen-blend-draped-shirt",
+      "categoryId": "womenswear",
+      "price": 1299,
+      "mrp": 1599,
+      "description": "A relaxed overshirt in breathable European flax linen. Structured enough for the office, soft enough for the beach.",
+      "sustainability": [
+        "European Flax",
+        "Natural Fibres",
+        "Fair Trade"
+      ],
+      "images": [
+        "/images/products/shirt-mist.svg"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L"
+      ],
+      "colors": [
+        "Mist",
+        "White",
+        "Sand"
+      ],
+      "rating": 4.6,
+      "reviews": 189,
+      "stock": 60,
+      "featured": true,
+      "createdAt": "2026-01-20"
+    },
+    {
+      "id": "ocean-plastic-performance-leggings",
+      "name": "Ocean Plastic Performance Leggings",
+      "slug": "ocean-plastic-performance-leggings",
+      "categoryId": "activewear",
+      "price": 999,
+      "mrp": 1299,
+      "description": "High-compression leggings made from regenerated ocean plastic. Four-way stretch, sweat-wicking, and seam-free comfort for every session.",
+      "sustainability": [
+        "Recycled Ocean Plastic",
+        "Sweat Wicking",
+        "Seam Free"
+      ],
+      "images": [
+        "/images/products/leggings-forest.svg"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Forest",
+        "Black",
+        "Seafoam"
+      ],
+      "rating": 4.9,
+      "reviews": 321,
+      "stock": 110,
+      "featured": true,
+      "createdAt": "2026-01-28"
+    },
+    {
+      "id": "organic-cotton-tote",
+      "name": "Organic Cotton Grocery Tote",
+      "slug": "organic-cotton-grocery-tote",
+      "categoryId": "accessories",
+      "price": 299,
+      "mrp": 399,
+      "description": "A sturdy, washable tote that folds into its own pocket. Perfect for groceries, gym, or every errand in between.",
+      "sustainability": [
+        "Organic Cotton",
+        "Reusable",
+        "Zero Waste"
+      ],
+      "images": [
+        "/images/products/tote-seafoam.svg"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "colors": [
+        "Seafoam",
+        "Mist",
+        "Natural"
+      ],
+      "rating": 4.5,
+      "reviews": 156,
+      "stock": 200,
+      "featured": false,
+      "createdAt": "2026-02-10"
+    },
+    {
+      "id": "oversized-organic-blazer",
+      "name": "Oversized Organic Wool Blazer",
+      "slug": "oversized-organic-blazer",
+      "categoryId": "womenswear",
+      "price": 2499,
+      "mrp": 3299,
+      "description": "A sharp, intentionally oversized blazer in traceable organic wool. The single piece that upgrades everything it touches.",
+      "sustainability": [
+        "Traceable Wool",
+        "Cruelty Free",
+        "Timeless Design"
+      ],
+      "images": [
+        "/images/products/blazer-mist.svg"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Mist",
+        "Stone",
+        "Black"
+      ],
+      "rating": 4.7,
+      "reviews": 94,
+      "stock": 40,
+      "featured": false,
+      "badge": "Premium",
+      "createdAt": "2026-01-15"
+    },
+    {
+      "id": "hemp-workday-chinos",
+      "name": "Hemp Workday Chinos",
+      "slug": "hemp-workday-chinos",
+      "categoryId": "menswear",
+      "price": 1799,
+      "mrp": 2199,
+      "description": "Everyday chinos woven with durable hemp that stays crisp through commutes, coffee runs, and double shifts.",
+      "sustainability": [
+        "Hemp Blend",
+        "Low Water",
+        "Biodegradable"
+      ],
+      "images": [
+        "/images/products/chinos-forest.svg"
+      ],
+      "sizes": [
+        "28",
+        "30",
+        "32",
+        "34",
+        "36"
+      ],
+      "colors": [
+        "Forest",
+        "Khaki",
+        "Grey"
+      ],
+      "rating": 4.6,
+      "reviews": 143,
+      "stock": 75,
+      "featured": false,
+      "createdAt": "2026-02-18"
+    },
+    {
+      "id": "bamboo-rib-tank-top",
+      "name": "Bamboo Rib Tank Top",
+      "slug": "bamboo-rib-tank-top",
+      "categoryId": "womenswear",
+      "price": 499,
+      "mrp": 649,
+      "description": "Buttery-soft bamboo viscose in a ribbed silhouette. Layers under everything or shines on its own.",
+      "sustainability": [
+        "Bamboo Viscose",
+        "Hypoallergenic",
+        "Biodegradable"
+      ],
+      "images": [
+        "/images/products/tank-seafoam.svg"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Seafoam",
+        "Mist",
+        "Black"
+      ],
+      "rating": 4.5,
+      "reviews": 210,
+      "stock": 130,
+      "featured": false,
+      "badge": "Bestseller",
+      "createdAt": "2026-01-08"
+    },
+    {
+      "id": "recycled-breathable-running-tee",
+      "name": "Recycled Breathable Running Tee",
+      "slug": "recycled-breathable-running-tee",
+      "categoryId": "activewear",
+      "price": 899,
+      "mrp": 1099,
+      "description": "Featherlight running tee knitted from 100% recycled bottles. Mesh venting keeps you cool on the longest loops.",
+      "sustainability": [
+        "100% Recycled",
+        "UPF 40+",
+        "Quick Dry"
+      ],
+      "images": [
+        "/images/products/runtee-mist.svg"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Mist",
+        "Coral",
+        "Black"
+      ],
+      "rating": 4.4,
+      "reviews": 118,
+      "stock": 95,
+      "featured": false,
+      "createdAt": "2026-02-22"
+    },
+    {
+      "id": "organic-denim-boyfriend-jeans",
+      "name": "Organic Denim Boyfriend Jeans",
+      "slug": "organic-denim-boyfriend-jeans",
+      "categoryId": "womenswear",
+      "price": 1899,
+      "mrp": 2399,
+      "description": "Relaxed, lived-in denim woven from organic cotton with natural indigo dyeing. The classic cut you'll reach for daily.",
+      "sustainability": [
+        "Organic Denim",
+        "Natural Indigo",
+        "EIM Certified"
+      ],
+      "images": [
+        "/images/products/jeans-seafoam.svg"
+      ],
+      "sizes": [
+        "24",
+        "26",
+        "28",
+        "30",
+        "32"
+      ],
+      "colors": [
+        "Indigo",
+        "Washed Blue",
+        "Black"
+      ],
+      "rating": 4.7,
+      "reviews": 256,
+      "stock": 70,
+      "featured": false,
+      "badge": "New",
+      "createdAt": "2026-03-01"
+    },
+    {
+      "id": "organic-cotton-knit-beanie",
+      "name": "Organic Cotton Knit Beanie",
+      "slug": "organic-cotton-knit-beanie",
+      "categoryId": "accessories",
+      "price": 449,
+      "mrp": 599,
+      "description": "A chunky-knit beanie in fully traceable organic cotton with a soft ribbed fold. Wrap your head in something kind.",
+      "sustainability": [
+        "Organic Cotton",
+        "Traceable",
+        "Fair Trade"
+      ],
+      "images": [
+        "/images/products/beanie-forest.svg"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "colors": [
+        "Forest",
+        "Mist",
+        "Charcoal",
+        "Cream"
+      ],
+      "rating": 4.6,
+      "reviews": 87,
+      "stock": 150,
+      "featured": false,
+      "createdAt": "2026-01-30"
+    },
+    {
+      "id": "merino-eco-blue-polo",
+      "name": "Merino Wool Polo",
+      "slug": "merino-eco-blue-polo",
+      "categoryId": "menswear",
+      "price": 1399,
+      "mrp": 1799,
+      "description": "A smart-casual polo in mulesing-free merino that regulates temperature, resists odour, and keeps its shape.",
+      "sustainability": [
+        "Mulesing Free Merino",
+        "Odour Resistant",
+        "Natural Yarn"
+      ],
+      "images": [
+        "/images/products/polo-mist.svg"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Mist",
+        "Navy",
+        "Grey"
+      ],
+      "rating": 4.5,
+      "reviews": 132,
+      "stock": 65,
+      "featured": false,
+      "createdAt": "2026-02-11"
+    }
+  ],
+  "categories": [
+    {
+      "id": "womenswear",
+      "name": "Womenswear",
+      "slug": "womenswear",
+      "description": "Timeless silhouettes in organic and recycled fabrics."
+    },
+    {
+      "id": "menswear",
+      "name": "Menswear",
+      "slug": "menswear",
+      "description": "Clean, durable staples built for everyday life."
+    },
+    {
+      "id": "activewear",
+      "name": "Activewear",
+      "slug": "activewear",
+      "description": "Breathable, sweat-ready pieces made from recycled ocean plastic."
+    },
+    {
+      "id": "accessories",
+      "name": "Accessories",
+      "slug": "accessories",
+      "description": "Small goods with a smaller footprint."
+    },
+    {
+      "id": "basics",
+      "name": "Basics",
+      "slug": "basics",
+      "description": "The essentials you wear on repeat."
+    }
+  ]
+}
