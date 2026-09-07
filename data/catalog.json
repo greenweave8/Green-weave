@@ -1,41 +1,6 @@
 {
   "products": [
     {
-      "id": "recycled-hooded-sweatshirt",
-      "name": "random aahh tshirt",
-      "slug": "recycled-hooded-sweatshirt",
-      "categoryId": "menswear",
-      "price": 1499,
-      "mrp": 1899,
-      "description": "A heavyweight hoodie spun from regenerated cotton and recycled polyester. Brushed inside, durable outside, and gentle on the planet.",
-      "sustainability": [
-        "Recycled Polyester",
-        "40% Less Water",
-        "Plastic Free Packaging"
-      ],
-      "images": [
-        "/images/products/hoodie-seafoam.svg"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL",
-        "XXL"
-      ],
-      "colors": [
-        "Seafoam",
-        "Forest",
-        "Charcoal"
-      ],
-      "rating": 4.7,
-      "reviews": 268,
-      "stock": 85,
-      "featured": true,
-      "badge": "New",
-      "createdAt": "2026-02-03"
-    },
-    {
       "id": "linen-blend-draped-shirt",
       "name": "Linen Blend Draped Shirt",
       "slug": "linen-blend-draped-shirt",
