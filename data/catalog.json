@@ -1,41 +1,6 @@
 {
   "products": [
     {
-      "id": "organic-denim-boyfriend-jeans",
-      "name": "Organic Denim Boyfriend Jeans",
-      "slug": "organic-denim-boyfriend-jeans",
-      "categoryId": "womenswear",
-      "price": 1899,
-      "mrp": 2399,
-      "description": "Relaxed, lived-in denim woven from organic cotton with natural indigo dyeing. The classic cut you'll reach for daily.",
-      "sustainability": [
-        "Organic Denim",
-        "Natural Indigo",
-        "EIM Certified"
-      ],
-      "images": [
-        "/images/products/jeans-seafoam.svg"
-      ],
-      "sizes": [
-        "24",
-        "26",
-        "28",
-        "30",
-        "32"
-      ],
-      "colors": [
-        "Indigo",
-        "Washed Blue",
-        "Black"
-      ],
-      "rating": 4.7,
-      "reviews": 256,
-      "stock": 70,
-      "featured": false,
-      "badge": "New",
-      "createdAt": "2026-03-01"
-    },
-    {
       "id": "organic-cotton-knit-beanie",
       "name": "Organic Cotton Knit Beanie",
       "slug": "organic-cotton-knit-beanie",
