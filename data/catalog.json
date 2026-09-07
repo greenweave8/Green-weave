@@ -1,41 +1,6 @@
 {
   "products": [
     {
-      "id": "bamboo-rib-tank-top",
-      "name": "Bamboo Rib Tank Top",
-      "slug": "bamboo-rib-tank-top",
-      "categoryId": "womenswear",
-      "price": 499,
-      "mrp": 649,
-      "description": "Buttery-soft bamboo viscose in a ribbed silhouette. Layers under everything or shines on its own.",
-      "sustainability": [
-        "Bamboo Viscose",
-        "Hypoallergenic",
-        "Biodegradable"
-      ],
-      "images": [
-        "/images/products/tank-seafoam.svg"
-      ],
-      "sizes": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "colors": [
-        "Seafoam",
-        "Mist",
-        "Black"
-      ],
-      "rating": 4.5,
-      "reviews": 210,
-      "stock": 130,
-      "featured": false,
-      "badge": "Bestseller",
-      "createdAt": "2026-01-08"
-    },
-    {
       "id": "recycled-breathable-running-tee",
       "name": "Recycled Breathable Running Tee",
       "slug": "recycled-breathable-running-tee",
