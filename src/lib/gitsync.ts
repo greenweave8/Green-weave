@@ -79,6 +79,23 @@ export function syncCatalogToGit(): boolean {
   );
 }
 
+/** True when this server can actually commit+push (local dev git checkout). */
+export function canGitSync(): boolean {
+  if (process.env.NODE_ENV === "production") return false;
+  if (process.env.GIT_SYNC === "false") return false;
+  return git(["rev-parse", "--is-inside-work-tree"]) !== null;
+}
+
+/** Current sync state of a tracked data file, for admin status UIs. */
+export function getSyncStatus(
+  relPath: string
+): { pending: boolean; canPush: boolean } {
+  const canPush = canGitSync();
+  const pending =
+    canPush && Boolean(git(["status", "--porcelain", "--", relPath]));
+  return { pending, canPush };
+}
+
 function git(args: string[]): string | null {
   const env = { ...process.env, GIT_TERMINAL_PROMPT: "0" };
   try {

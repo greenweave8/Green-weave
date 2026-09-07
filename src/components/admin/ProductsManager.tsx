@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { Loader2, Package, Pencil, Plus, Search, Trash2 } from "lucide-react";
 import type { Category, Product } from "@/lib/types";
 import { formatINR } from "@/lib/format";
+import CatalogPushButton from "@/components/admin/CatalogPushButton";
 
 export default function ProductsManager({
   products,
@@ -49,12 +50,15 @@ export default function ProductsManager({
             {products.length} products in your catalogue
           </p>
         </div>
-        <Link
-          href="/admin/products/new"
-          className="inline-flex items-center justify-center gap-2 rounded-full bg-forest px-6 py-3 text-sm font-semibold text-white hover:bg-forest-dark"
-        >
-          <Plus className="h-4 w-4" /> Add product
-        </Link>
+        <div className="flex flex-wrap items-center gap-3">
+          <CatalogPushButton />
+          <Link
+            href="/admin/products/new"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-forest px-6 py-3 text-sm font-semibold text-white hover:bg-forest-dark"
+          >
+            <Plus className="h-4 w-4" /> Add product
+          </Link>
+        </div>
       </div>
 
       <div className="mt-6 flex items-center gap-2 rounded-full border border-mist bg-white px-4">
