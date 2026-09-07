@@ -1,37 +1,6 @@
 {
   "products": [
     {
-      "id": "organic-cotton-knit-beanie",
-      "name": "Organic Cotton Knit Beanie",
-      "slug": "organic-cotton-knit-beanie",
-      "categoryId": "accessories",
-      "price": 449,
-      "mrp": 599,
-      "description": "A chunky-knit beanie in fully traceable organic cotton with a soft ribbed fold. Wrap your head in something kind.",
-      "sustainability": [
-        "Organic Cotton",
-        "Traceable",
-        "Fair Trade"
-      ],
-      "images": [
-        "/images/products/beanie-forest.svg"
-      ],
-      "sizes": [
-        "One Size"
-      ],
-      "colors": [
-        "Forest",
-        "Mist",
-        "Charcoal",
-        "Cream"
-      ],
-      "rating": 4.6,
-      "reviews": 87,
-      "stock": 150,
-      "featured": false,
-      "createdAt": "2026-01-30"
-    },
-    {
       "id": "merino-eco-blue-polo",
       "name": "Merino Wool Polo",
       "slug": "merino-eco-blue-polo",
