@@ -1,40 +1,6 @@
 {
   "products": [
     {
-      "id": "hemp-workday-chinos",
-      "name": "Hemp Workday Chinos",
-      "slug": "hemp-workday-chinos",
-      "categoryId": "menswear",
-      "price": 1799,
-      "mrp": 2199,
-      "description": "Everyday chinos woven with durable hemp that stays crisp through commutes, coffee runs, and double shifts.",
-      "sustainability": [
-        "Hemp Blend",
-        "Low Water",
-        "Biodegradable"
-      ],
-      "images": [
-        "/images/products/chinos-forest.svg"
-      ],
-      "sizes": [
-        "28",
-        "30",
-        "32",
-        "34",
-        "36"
-      ],
-      "colors": [
-        "Forest",
-        "Khaki",
-        "Grey"
-      ],
-      "rating": 4.6,
-      "reviews": 143,
-      "stock": 75,
-      "featured": false,
-      "createdAt": "2026-02-18"
-    },
-    {
       "id": "bamboo-rib-tank-top",
       "name": "Bamboo Rib Tank Top",
       "slug": "bamboo-rib-tank-top",
