@@ -1,41 +1,6 @@
 {
   "products": [
     {
-      "id": "recycled-breathable-running-tee",
-      "name": "Recycled Breathable Running Tee",
-      "slug": "recycled-breathable-running-tee",
-      "categoryId": "activewear",
-      "price": 899,
-      "mrp": 1099,
-      "description": "Featherlight running tee knitted from 100% recycled bottles. Mesh venting keeps you cool on the longest loops.",
-      "sustainability": [
-        "100% Recycled",
-        "UPF 40+",
-        "Quick Dry"
-      ],
-      "images": [
-        "/images/products/runtee-mist.svg"
-      ],
-      "sizes": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL",
-        "XXL"
-      ],
-      "colors": [
-        "Mist",
-        "Coral",
-        "Black"
-      ],
-      "rating": 4.4,
-      "reviews": 118,
-      "stock": 95,
-      "featured": false,
-      "createdAt": "2026-02-22"
-    },
-    {
       "id": "organic-denim-boyfriend-jeans",
       "name": "Organic Denim Boyfriend Jeans",
       "slug": "organic-denim-boyfriend-jeans",
