@@ -1,39 +1,6 @@
 {
   "products": [
     {
-      "id": "linen-blend-draped-shirt",
-      "name": "Linen Blend Draped Shirt",
-      "slug": "linen-blend-draped-shirt",
-      "categoryId": "womenswear",
-      "price": 1299,
-      "mrp": 1599,
-      "description": "A relaxed overshirt in breathable European flax linen. Structured enough for the office, soft enough for the beach.",
-      "sustainability": [
-        "European Flax",
-        "Natural Fibres",
-        "Fair Trade"
-      ],
-      "images": [
-        "/images/products/shirt-mist.svg"
-      ],
-      "sizes": [
-        "XS",
-        "S",
-        "M",
-        "L"
-      ],
-      "colors": [
-        "Mist",
-        "White",
-        "Sand"
-      ],
-      "rating": 4.6,
-      "reviews": 189,
-      "stock": 60,
-      "featured": true,
-      "createdAt": "2026-01-20"
-    },
-    {
       "id": "ocean-plastic-performance-leggings",
       "name": "Ocean Plastic Performance Leggings",
       "slug": "ocean-plastic-performance-leggings",
