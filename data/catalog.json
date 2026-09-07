@@ -1,40 +1,6 @@
 {
   "products": [
     {
-      "id": "ocean-plastic-performance-leggings",
-      "name": "Ocean Plastic Performance Leggings",
-      "slug": "ocean-plastic-performance-leggings",
-      "categoryId": "activewear",
-      "price": 999,
-      "mrp": 1299,
-      "description": "High-compression leggings made from regenerated ocean plastic. Four-way stretch, sweat-wicking, and seam-free comfort for every session.",
-      "sustainability": [
-        "Recycled Ocean Plastic",
-        "Sweat Wicking",
-        "Seam Free"
-      ],
-      "images": [
-        "/images/products/leggings-forest.svg"
-      ],
-      "sizes": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "colors": [
-        "Forest",
-        "Black",
-        "Seafoam"
-      ],
-      "rating": 4.9,
-      "reviews": 321,
-      "stock": 110,
-      "featured": true,
-      "createdAt": "2026-01-28"
-    },
-    {
       "id": "organic-cotton-tote",
       "name": "Organic Cotton Grocery Tote",
       "slug": "organic-cotton-grocery-tote",
