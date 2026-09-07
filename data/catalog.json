@@ -1,40 +1,5 @@
 {
-  "products": [
-    {
-      "id": "merino-eco-blue-polo",
-      "name": "Merino Wool Polo",
-      "slug": "merino-eco-blue-polo",
-      "categoryId": "menswear",
-      "price": 1399,
-      "mrp": 1799,
-      "description": "A smart-casual polo in mulesing-free merino that regulates temperature, resists odour, and keeps its shape.",
-      "sustainability": [
-        "Mulesing Free Merino",
-        "Odour Resistant",
-        "Natural Yarn"
-      ],
-      "images": [
-        "/images/products/polo-mist.svg"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL",
-        "XXL"
-      ],
-      "colors": [
-        "Mist",
-        "Navy",
-        "Grey"
-      ],
-      "rating": 4.5,
-      "reviews": 132,
-      "stock": 65,
-      "featured": false,
-      "createdAt": "2026-02-11"
-    }
-  ],
+  "products": [],
   "categories": [
     {
       "id": "womenswear",
