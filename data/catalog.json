@@ -1,6 +1,28 @@
 {
   "products": [
     {
+      "id": "p_mubfk2dlhw85lx",
+      "name": "Hoodie",
+      "slug": "hoodie",
+      "categoryId": "basics",
+      "price": 900,
+      "description": "",
+      "sustainability": [],
+      "images": [
+        "/uploads/img_mubfjk6cm5cnxu.jpg",
+        "/uploads/img_mubfjoh1hlqoyt.jpg"
+      ],
+      "sizes": [
+        "Free Size"
+      ],
+      "colors": [],
+      "rating": 0,
+      "reviews": 0,
+      "stock": 0,
+      "featured": false,
+      "createdAt": "2026-09-21"
+    },
+    {
       "id": "p_mubfir0exbr533",
       "name": "T-Shirt",
       "slug": "t-shirt",
