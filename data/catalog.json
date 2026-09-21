@@ -1,6 +1,27 @@
 {
   "products": [
     {
+      "id": "p_mubfir0exbr533",
+      "name": "T-Shirt",
+      "slug": "t-shirt",
+      "categoryId": "basics",
+      "price": 750,
+      "description": "",
+      "sustainability": [],
+      "images": [
+        "/uploads/img_mubfgi09bm78bf.jpg"
+      ],
+      "sizes": [
+        "Free Size"
+      ],
+      "colors": [],
+      "rating": 0,
+      "reviews": 0,
+      "stock": 10,
+      "featured": false,
+      "createdAt": "2026-09-21"
+    },
+    {
       "id": "p_mubff35l69619u",
       "name": "Camis",
       "slug": "camis",
