@@ -61,25 +61,6 @@ export const DEFAULT_CONTENT: SiteContent = {
   "home.categoriesTitle": "Shop by category",
   "home.categoriesCta": "Shop now",
 
-  // ---- Home: impact banner ----
-  "home.impactEyebrow": "our promise",
-  "home.impactTitle": "One tree planted for every order",
-  "home.impactText":
-    "We partner with grassroots reforestation groups across India. Your purchase funds a tree — and our recycled paper packaging means the only thing we send out is good clothes.",
-  "home.impactCta": "Read our story",
-  "home.impactStat1": "38k",
-  "home.impactStat1Label": "orders shipped",
-  "home.impactStat2": "96%",
-  "home.impactStat2Label": "customers repurchase",
-  "home.impactStat3": "4.8★",
-  "home.impactStat3Label": "average rating",
-  "home.impactStat4": "8.4k",
-  "home.impactStat4Label": "trees planted",
-  "home.impactStat5": "120k",
-  "home.impactStat5Label": "bottles recycled",
-  "home.impactStat6": "50L",
-  "home.impactStat6Label": "water saved per piece",
-
   // ---- Home: new arrivals ----
   "home.arrivalsEyebrow": "just landed",
   "home.arrivalsTitle": "New arrivals",

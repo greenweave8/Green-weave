@@ -51,11 +51,6 @@ export default async function HomePage() {
     { icon: ShieldCheck, title: content["home.pillar4Title"], text: content["home.pillar4Text"] },
   ];
 
-  const impactStats: [string, string][] = [1, 2, 3, 4, 5, 6].map((i) => [
-    content[`home.impactStat${i}`],
-    content[`home.impactStat${i}Label`],
-  ]);
-
   const testimonials = [1, 2, 3].map((i) => ({
     name: content[`home.testimonial${i}Name`],
     role: content[`home.testimonial${i}Role`],
@@ -265,49 +260,6 @@ export default async function HomePage() {
                 </Link>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* ---- Impact banner ---- */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-[2.5rem] bg-seafoam p-8 sm:p-12 lg:p-16">
-          <div className="pointer-events-none absolute -right-10 -top-10 h-56 w-56 rounded-full bg-white/50" />
-          <div className="pointer-events-none absolute -bottom-16 -left-10 h-64 w-64 rounded-full bg-white/40" />
-          <div className="relative grid items-center gap-10 lg:grid-cols-2">
-            <div>
-              <span className="font-hand -rotate-2 text-2xl text-forest">
-                {content["home.impactEyebrow"]}
-              </span>
-              <h2 className="mt-2 text-3xl font-extrabold text-forest-night sm:text-4xl">
-                {content["home.impactTitle"]}
-              </h2>
-              <p className="mt-4 max-w-lg leading-relaxed text-forest-night/70">
-                {content["home.impactText"]}
-              </p>
-              <Link
-                href="/about"
-                className="group mt-7 inline-flex items-center gap-2 rounded-full bg-forest-night px-8 py-4 text-sm font-bold text-seafoam transition-all hover:-translate-y-0.5 hover:shadow-xl"
-              >
-                {content["home.impactCta"]}
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </div>
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-              {impactStats.map(([value, label], i) => (
-                <div
-                  key={label}
-                  className={`rounded-3xl bg-white/70 p-5 shadow-sm backdrop-blur ${
-                    i % 2 === 0 ? "rotate-[-1deg]" : "rotate-[1deg]"
-                  }`}
-                >
-                  <p className="display text-2xl font-black text-forest-dark">
-                    {value}
-                  </p>
-                  <p className="mt-1 text-xs text-forest-night/60">{label}</p>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
