@@ -1,6 +1,32 @@
 {
   "products": [
     {
+      "id": "p_mubfpi7yjmm0t6",
+      "name": "Denim Shorts (With Pattern)",
+      "slug": "denim-shorts-with-pattern",
+      "categoryId": "womenswear",
+      "price": 900,
+      "description": "",
+      "sustainability": [],
+      "images": [
+        "/uploads/img_mubfoc1mcs6e5x.jpg",
+        "/uploads/img_mubfoglgqx6u5q.jpg"
+      ],
+      "sizes": [
+        "S",
+        "M"
+      ],
+      "colors": [
+        "Blue",
+        "Black"
+      ],
+      "rating": 0,
+      "reviews": 0,
+      "stock": 0,
+      "featured": false,
+      "createdAt": "2026-09-21"
+    },
+    {
       "id": "p_mubfnioyotf8bx",
       "name": "Denim Shorts",
       "slug": "denim-shorts",
