@@ -6,22 +6,40 @@ import { execFileSync } from "child_process";
  * the changed file to git and push it so the repo (and anything deployed from
  * it) reflects the change.
  *
- * Only runs in a local/dev git checkout: production servers (e.g. Render) do
- * not have push credentials and keep their data on their own disk instead.
+ * Two modes are supported:
+ *  - "local": a dev git checkout (e.g. `npm run dev`). Pushes with the user's
+ *    existing git credentials.
+ *  - "remote": a deployed server (e.g. Render) where GIT_PUSH_TOKEN is set to a
+ *    GitHub personal access token (scope: repo). Pushes over HTTPS using that
+ *    token, so admin edits made on the live site also land in git.
+ *
+ * Sync is skipped entirely otherwise (production without a token — the data is
+ * still saved to the server's own disk).
  *
  * Returns true when a commit+push was performed, false when skipped or failed.
  */
+
+const PUSH_TOKEN = process.env.GIT_PUSH_TOKEN || "";
+
+type SyncMode = "local" | "remote";
+
+function syncMode(): SyncMode | null {
+  if (process.env.GIT_SYNC === "false") return null;
+  if (git(["rev-parse", "--is-inside-work-tree"], true) === null) return null;
+  if (process.env.NODE_ENV === "production") {
+    return PUSH_TOKEN ? "remote" : null;
+  }
+  return "local";
+}
+
 export function syncFileToGit(relPath: string, message: string): boolean {
   return syncPathsToGit([relPath], message);
 }
 
 export function syncPathsToGit(relPaths: string[], message: string): boolean {
+  const mode = syncMode();
+  if (!mode) return false;
   try {
-    if (process.env.NODE_ENV === "production") return false;
-    if (process.env.GIT_SYNC === "false") return false;
-
-    if (git(["rev-parse", "--is-inside-work-tree"]) === null) return false;
-
     const changed = git(["status", "--porcelain", "--", ...relPaths]);
     if (!changed) return false;
 
@@ -52,6 +70,8 @@ export function syncPathsToGit(relPaths: string[], message: string): boolean {
     }
     if (!hasStagedDiff) return false;
 
+    ensureIdentity();
+
     // Commit exactly what was staged above (no pathspec, so index-only content
     // is committed and line-ending conversion on the worktree can't interfere).
     if (git(["commit", "-m", message]) === null) {
@@ -67,8 +87,10 @@ export function syncPathsToGit(relPaths: string[], message: string): boolean {
 
     const branch = git(["rev-parse", "--abbrev-ref", "HEAD"]);
     if (branch) {
-      if (git(["push", "origin", branch]) === null) {
-        console.error(`[gitsync] Commit created but push to origin/${branch} failed.`);
+      if (!pushBranch(branch, mode)) {
+        console.error(
+          `[gitsync] Commit created but push to origin/${branch} failed (${mode}).`
+        );
       }
     }
 
@@ -80,6 +102,36 @@ export function syncPathsToGit(relPaths: string[], message: string): boolean {
   }
 }
 
+function ensureIdentity(): void {
+  if (git(["config", "user.email"], true) === null) {
+    git([
+      "config",
+      "user.email",
+      process.env.GIT_COMMITTER_EMAIL ||
+        "greenweave-bot@users.noreply.github.com",
+    ]);
+  }
+  if (git(["config", "user.name"], true) === null) {
+    git([
+      "config",
+      "user.name",
+      process.env.GIT_COMMITTER_NAME || "greenweave bot",
+    ]);
+  }
+}
+
+function pushBranch(branch: string, mode: SyncMode): boolean {
+  const args: string[] = ["push", "origin", branch];
+  if (mode === "remote") {
+    const auth = Buffer.from(
+      `x-access-token:${PUSH_TOKEN}`,
+      "utf8"
+    ).toString("base64");
+    args.unshift("-c", `http.extraheader=AUTHORIZATION: basic ${auth}`);
+  }
+  return git(args) !== null;
+}
+
 export function syncCatalogToGit(): boolean {
   return syncPathsToGit(
     ["data/catalog.json", "public/uploads"],
@@ -87,11 +139,9 @@ export function syncCatalogToGit(): boolean {
   );
 }
 
-/** True when this server can actually commit+push (local dev git checkout). */
+/** True when this server can actually commit+push (local checkout or remote with token). */
 export function canGitSync(): boolean {
-  if (process.env.NODE_ENV === "production") return false;
-  if (process.env.GIT_SYNC === "false") return false;
-  return git(["rev-parse", "--is-inside-work-tree"]) !== null;
+  return syncMode() !== null;
 }
 
 /** Current sync state of a tracked data file, for admin status UIs. */
@@ -124,7 +174,7 @@ export function getCatalogSyncStatus(): {
   return { pending, canPush };
 }
 
-function git(args: string[]): string | null {
+function git(args: string[], quiet = false): string | null {
   const env = { ...process.env, GIT_TERMINAL_PROMPT: "0" };
   try {
     return execFileSync("git", args, {
@@ -135,7 +185,9 @@ function git(args: string[]): string | null {
       stdio: "pipe",
     }).trim();
   } catch (err) {
-    console.error(`[gitsync] git ${args.join(" ")} failed`, (err as Error).message);
+    if (!quiet) {
+      console.error(`[gitsync] git ${args.join(" ")} failed`, (err as Error).message);
+    }
     return null;
   }
 }

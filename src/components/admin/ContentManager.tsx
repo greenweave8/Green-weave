@@ -67,7 +67,7 @@ export default function ContentManager({
         setStatus(
           data.pushed
             ? "Saved. Changes were committed & pushed to GitHub."
-            : "Saved. Auto-push is only available from a local dev git checkout — changes are saved here regardless."
+            : "Saved. Auto-push isn't enabled on this server (missing GIT_PUSH_TOKEN env var) — changes are saved here regardless."
         );
       }
     } catch {

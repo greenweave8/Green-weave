@@ -21,6 +21,9 @@ services:
         sync: false
       - key: USER_SESSION_SECRET
         generateValue: true
+      # GitHub PAT (scope: repo) enables admin edits on Render to push directly.
+      - key: GIT_PUSH_TOKEN
+        sync: false
     disk:
       name: greenweave-data
       mountPath: /opt/render/project/src/data

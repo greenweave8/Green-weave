@@ -82,12 +82,6 @@ export const DEFAULT_CONTENT: SiteContent = {
   "home.testimonial3Text":
     "Finally a brand that cares. I love scanning the QR to trace where every piece came from. This is the future.",
 
-  // ---- Home: newsletter ----
-  "home.newsletterEyebrow": "join the grove",
-  "home.newsletterTitle": "Get 10% off your first order",
-  "home.newsletterText":
-    "Drops, giveaways and a small seeding of good news. No spam, just seeds.",
-
   // ---- About ----
   "about.eyebrow": "a small studio",
   "about.title": "Weaving a kinder wardrobe.",

@@ -11,7 +11,6 @@ import {
 import { getProducts, getCategories } from "@/lib/db";
 import { getContent } from "@/lib/content";
 import ProductCard from "@/components/ProductCard";
-import NewsletterForm from "@/components/NewsletterForm";
 
 export const dynamic = "force-dynamic";
 
@@ -329,25 +328,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ---- Newsletter ---- */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-[2.5rem] bg-forest-night px-6 py-16 text-center sm:px-12">
-          <div className="pointer-events-none absolute -left-16 -top-16 h-64 w-64 rounded-full bg-forest/30 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-20 -right-10 h-72 w-72 rounded-full bg-forest-deep-2/60 blur-3xl" />
-          <div className="relative">
-            <span className="font-hand -rotate-2 text-2xl text-seafoam">
-              {content["home.newsletterEyebrow"]}
-            </span>
-            <h2 className="mt-2 text-4xl font-extrabold text-white">
-              {content["home.newsletterTitle"]}
-            </h2>
-            <p className="mx-auto mt-4 max-w-md text-seafoam/70">
-              {content["home.newsletterText"]}
-            </p>
-            <NewsletterForm dark />
-          </div>
-        </div>
-      </section>
-    </>
+      </>
   );
 }
