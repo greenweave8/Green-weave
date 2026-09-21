@@ -1,6 +1,33 @@
 {
   "products": [
     {
+      "id": "p_mubfs9rzlwsszu",
+      "name": "Bags",
+      "slug": "bags",
+      "categoryId": "accessories",
+      "price": 400,
+      "description": "",
+      "sustainability": [],
+      "images": [
+        "/uploads/img_mubfrprt67u5b7.jpg",
+        "/uploads/img_mubfrvlap4w7vb.jpg",
+        "/uploads/img_mubfryzcrakepu.jpg"
+      ],
+      "sizes": [
+        "Free Size"
+      ],
+      "colors": [
+        "Grey",
+        "Blue",
+        "Black"
+      ],
+      "rating": 0,
+      "reviews": 0,
+      "stock": 0,
+      "featured": false,
+      "createdAt": "2026-09-21"
+    },
+    {
       "id": "p_mubfpi7yjmm0t6",
       "name": "Denim Shorts (With Pattern)",
       "slug": "denim-shorts-with-pattern",
