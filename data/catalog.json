@@ -1,5 +1,27 @@
 {
-  "products": [],
+  "products": [
+    {
+      "id": "p_mubff35l69619u",
+      "name": "Camis",
+      "slug": "camis",
+      "categoryId": "womenswear",
+      "price": 600,
+      "description": "",
+      "sustainability": [],
+      "images": [
+        "/uploads/img_mubf9fq1j1l3j8.jpg"
+      ],
+      "sizes": [
+        "Free Size"
+      ],
+      "colors": [],
+      "rating": 0,
+      "reviews": 0,
+      "stock": 10,
+      "featured": false,
+      "createdAt": "2026-09-21"
+    }
+  ],
   "categories": [
     {
       "id": "womenswear",
