@@ -12,18 +12,22 @@ import { execFileSync } from "child_process";
  * Returns true when a commit+push was performed, false when skipped or failed.
  */
 export function syncFileToGit(relPath: string, message: string): boolean {
+  return syncPathsToGit([relPath], message);
+}
+
+export function syncPathsToGit(relPaths: string[], message: string): boolean {
   try {
     if (process.env.NODE_ENV === "production") return false;
     if (process.env.GIT_SYNC === "false") return false;
 
     if (git(["rev-parse", "--is-inside-work-tree"]) === null) return false;
 
-    const changed = git(["status", "--porcelain", "--", relPath]);
+    const changed = git(["status", "--porcelain", "--", ...relPaths]);
     if (!changed) return false;
 
     const headBefore = git(["rev-parse", "HEAD"]);
-    if (git(["add", "--", relPath]) === null) {
-      console.error(`[gitsync] Could not stage ${relPath} for git.`);
+    if (git(["add", "--", ...relPaths]) === null) {
+      console.error(`[gitsync] Could not stage ${relPaths.join(", ")} for git.`);
       return false;
     }
 
@@ -33,12 +37,16 @@ export function syncFileToGit(relPath: string, message: string): boolean {
     // helper below reports as null, so only a clean index returns non-null.
     let hasStagedDiff = false;
     try {
-      execFileSync("git", ["diff", "--cached", "--quiet", "--", relPath], {
-        cwd: process.cwd(),
-        env: { ...process.env, GIT_TERMINAL_PROMPT: "0" },
-        timeout: 20000,
-        stdio: "pipe",
-      });
+      execFileSync(
+        "git",
+        ["diff", "--cached", "--quiet", "--", ...relPaths],
+        {
+          cwd: process.cwd(),
+          env: { ...process.env, GIT_TERMINAL_PROMPT: "0" },
+          timeout: 20000,
+          stdio: "pipe",
+        }
+      );
     } catch {
       hasStagedDiff = true;
     }
@@ -47,7 +55,7 @@ export function syncFileToGit(relPath: string, message: string): boolean {
     // Commit exactly what was staged above (no pathspec, so index-only content
     // is committed and line-ending conversion on the worktree can't interfere).
     if (git(["commit", "-m", message]) === null) {
-      console.error(`[gitsync] Could not commit ${relPath} to git.`);
+      console.error(`[gitsync] Could not commit ${relPaths.join(", ")} to git.`);
       return false;
     }
 
@@ -64,17 +72,17 @@ export function syncFileToGit(relPath: string, message: string): boolean {
       }
     }
 
-    console.log(`[gitsync] Committed ${relPath} (${headAfter.slice(0, 7)}).`);
+    console.log(`[gitsync] Committed ${relPaths.join(", ")} (${headAfter.slice(0, 7)}).`);
     return true;
   } catch (err) {
-    console.error(`[gitsync] Could not sync ${relPath} to git:`, err);
+    console.error(`[gitsync] Could not sync ${relPaths.join(", ")} to git:`, err);
     return false;
   }
 }
 
 export function syncCatalogToGit(): boolean {
-  return syncFileToGit(
-    "data/catalog.json",
+  return syncPathsToGit(
+    ["data/catalog.json", "public/uploads"],
     "Update product catalog (admin edit)"
   );
 }
@@ -93,6 +101,26 @@ export function getSyncStatus(
   const canPush = canGitSync();
   const pending =
     canPush && Boolean(git(["status", "--porcelain", "--", relPath]));
+  return { pending, canPush };
+}
+
+/** Sync state of the product catalog, including its image uploads. */
+export function getCatalogSyncStatus(): {
+  pending: boolean;
+  canPush: boolean;
+} {
+  const canPush = canGitSync();
+  const pending =
+    canPush &&
+    Boolean(
+      git([
+        "status",
+        "--porcelain",
+        "--",
+        "data/catalog.json",
+        "public/uploads",
+      ])
+    );
   return { pending, canPush };
 }
 

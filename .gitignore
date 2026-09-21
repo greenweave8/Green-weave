@@ -27,8 +27,8 @@
 !/data/catalog.json
 !/data/content.json
 
-# user uploads
-/public/uploads/
+# user uploads are versioned so they deploy with the site (git-pushed catalog)
+# /public/uploads/
 
 # misc
 .DS_Store

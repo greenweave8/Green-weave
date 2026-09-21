@@ -146,6 +146,8 @@ export const DEFAULT_CONTENT: SiteContent = {
   "about.impactStat3Label": "trees planted",
   "about.impactStat4": "1,200",
   "about.impactStat4Label": "fair-wage jobs supported",
+  "about.impactStat5": "",
+  "about.impactStat5Label": "",
   "about.ctaEyebrow": "got the itch?",
   "about.ctaTitle": "Curious about a wardrobe that heals?",
   "about.ctaText": "Explore pieces that feel as good as they do good.",

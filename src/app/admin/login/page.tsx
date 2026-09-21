@@ -3,11 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { Eye, EyeOff, Loader2, Lock } from "lucide-react";
 
 export default function AdminLoginPage() {
-  const router = useRouter();
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -17,21 +15,32 @@ export default function AdminLoginPage() {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
     try {
       const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password }),
+        signal: controller.signal,
+        cache: "no-store",
       });
-      const data = await res.json();
+      clearTimeout(timeout);
+      const data = await res.json().catch(() => null);
       if (!res.ok) {
-        setError(data.error ?? "Login failed");
+        setError(
+          data?.error ?? `Login failed (HTTP ${res.status}). Try the default password greenweave2026.`
+        );
         return;
       }
-      router.push("/admin");
-      router.refresh();
-    } catch {
-      setError("Network error. Please try again.");
+      window.location.href = "/admin";
+    } catch (err) {
+      clearTimeout(timeout);
+      setError(
+        err instanceof DOMException && err.name === "AbortError"
+          ? "The request timed out — is the dev server still running on localhost:3000?"
+          : "Network error — could not reach the dev server. Restart it and try again."
+      );
     } finally {
       setLoading(false);
     }

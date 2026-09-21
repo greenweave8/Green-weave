@@ -22,7 +22,7 @@ export default async function AboutPage() {
     { icon: Handshake, title: content["about.promise6Title"], text: content["about.promise6Text"] },
   ];
 
-  const impactStats: [string, string][] = [1, 2, 3, 4].map((i) => [
+  const impactStats: [string, string][] = [1, 2, 3, 4, 5].map((i) => [
     content[`about.impactStat${i}`],
     content[`about.impactStat${i}Label`],
   ]);

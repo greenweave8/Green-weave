@@ -3,6 +3,7 @@ import type { NextRequest } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
 import { uid } from "@/lib/format";
+import { UPLOADS_DIR } from "@/lib/paths";
 import { isAuthenticatedToken } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
@@ -32,7 +33,7 @@ export async function POST(request: NextRequest) {
   const mime = match[1];
   const ext = mime.includes("png") ? "png" : mime.includes("svg") ? "svg" : "jpg";
   const filename = `${uid("img")}.${ext}`;
-  const uploadsDir = path.join(process.cwd(), "data", "uploads");
+  const uploadsDir = UPLOADS_DIR;
   await fs.mkdir(uploadsDir, { recursive: true });
   await fs.writeFile(
     path.join(uploadsDir, filename),
