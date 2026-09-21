@@ -1,6 +1,32 @@
 {
   "products": [
     {
+      "id": "p_mubfnioyotf8bx",
+      "name": "Denim Shorts",
+      "slug": "denim-shorts",
+      "categoryId": "womenswear",
+      "price": 800,
+      "description": "",
+      "sustainability": [],
+      "images": [
+        "/uploads/img_mubfmayl58amlw.jpg",
+        "/uploads/img_mubfmmmbela6u4.jpg"
+      ],
+      "sizes": [
+        "S",
+        "M"
+      ],
+      "colors": [
+        "Blue",
+        "Black"
+      ],
+      "rating": 0,
+      "reviews": 0,
+      "stock": 0,
+      "featured": false,
+      "createdAt": "2026-09-21"
+    },
+    {
       "id": "p_mubfk2dlhw85lx",
       "name": "Hoodie",
       "slug": "hoodie",
