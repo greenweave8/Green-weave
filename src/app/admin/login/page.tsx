@@ -29,7 +29,7 @@ export default function AdminLoginPage() {
       const data = await res.json().catch(() => null);
       if (!res.ok) {
         setError(
-          data?.error ?? `Login failed (HTTP ${res.status}). Try the default password greenweave2026.`
+          data?.error ?? `Login failed (HTTP ${res.status}). Check the password and try again.`
         );
         return;
       }
@@ -114,8 +114,7 @@ export default function AdminLoginPage() {
         </form>
 
         <p className="mt-6 text-center text-xs text-ink/50">
-          Default password:{" "}
-          <code className="rounded bg-mist px-1.5 py-0.5">greenweave2026</code>
+          Admin access only.
         </p>
         <p className="mt-3 text-center">
           <Link href="/" className="text-xs text-forest hover:underline">

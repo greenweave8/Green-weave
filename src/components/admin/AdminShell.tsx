@@ -9,6 +9,7 @@ import {
   Tags,
   ClipboardList,
   FileText,
+  Settings,
   LogOut,
 } from "lucide-react";
 
@@ -18,6 +19,7 @@ const nav = [
   { href: "/admin/categories", label: "Categories", icon: Tags },
   { href: "/admin/orders", label: "Orders", icon: ClipboardList },
   { href: "/admin/content", label: "Site content", icon: FileText },
+  { href: "/admin/settings", label: "Settings", icon: Settings },
 ];
 
 export default function AdminShell({

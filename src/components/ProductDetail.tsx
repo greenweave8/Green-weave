@@ -218,11 +218,6 @@ export default function ProductDetail({ product, related }: ProductDetailProps) 
               Hurry — only {stock} left in stock
             </p>
           )}
-          {stock === 0 && (
-            <p className="mt-3 text-xs font-medium text-red-500">
-              Out of stock
-            </p>
-          )}
 
           <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
             {features.map(({ icon: Icon, text }) => (
