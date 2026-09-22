@@ -66,7 +66,14 @@ export default function CatalogPushButton() {
         return;
       }
       if (data.pushed) {
-        show("Pushed to GitHub", "ok");
+        if (data.error) {
+          show(
+            `Committed on the server, but GitHub rejected the push: ${data.error.slice(0, 300)}`,
+            "error"
+          );
+        } else {
+          show("Pushed to GitHub", "ok");
+        }
       } else if (data.pending) {
         show("Push failed — changes are still pending.", "error");
       } else {

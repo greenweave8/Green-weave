@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { isAuthenticatedToken } from "@/lib/auth";
-import { getCatalogSyncStatus, syncCatalogToGit } from "@/lib/gitsync";
+import { getCatalogSyncStatus, getSyncError, syncCatalogToGit } from "@/lib/gitsync";
 
 export const dynamic = "force-dynamic";
 
@@ -18,5 +18,5 @@ export async function POST(request: NextRequest) {
   }
   const pushed = syncCatalogToGit();
   const { pending } = getCatalogSyncStatus();
-  return NextResponse.json({ pushed, pending });
+  return NextResponse.json({ pushed, pending, error: getSyncError() });
 }

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { isAuthenticatedToken } from "@/lib/auth";
 import { updateContent, DEFAULT_CONTENT, type SiteContent } from "@/lib/content";
+import { getSyncError } from "@/lib/gitsync";
 
 export const dynamic = "force-dynamic";
 
@@ -27,5 +28,5 @@ export async function PATCH(request: NextRequest) {
   }
 
   const { saved, pushed } = await updateContent(patch);
-  return NextResponse.json({ ok: true, pushed, saved });
+  return NextResponse.json({ ok: true, pushed, saved, error: getSyncError() });
 }

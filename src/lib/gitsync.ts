@@ -21,6 +21,13 @@ import { execFileSync } from "child_process";
 
 const PUSH_TOKEN = process.env.GIT_PUSH_TOKEN || "";
 
+/** Error message from the most recent push attempt (null when clean). */
+let lastPushError: string | null = null;
+
+export function getSyncError(): string | null {
+  return lastPushError;
+}
+
 type SyncMode = "local" | "remote";
 
 function syncMode(): SyncMode | null {
@@ -39,6 +46,7 @@ export function syncFileToGit(relPath: string, message: string): boolean {
 export function syncPathsToGit(relPaths: string[], message: string): boolean {
   const mode = syncMode();
   if (!mode) return false;
+  lastPushError = null;
   try {
     const changed = git(["status", "--porcelain", "--", ...relPaths]);
     if (!changed) return false;
@@ -87,9 +95,11 @@ export function syncPathsToGit(relPaths: string[], message: string): boolean {
 
     const branch = git(["rev-parse", "--abbrev-ref", "HEAD"]);
     if (branch) {
-      if (!pushBranch(branch, mode)) {
+      const pushError = pushBranch(branch, mode);
+      if (pushError) {
+        lastPushError = pushError;
         console.error(
-          `[gitsync] Commit created but push to origin/${branch} failed (${mode}).`
+          `[gitsync] Commit created but push to origin/${branch} failed (${mode}): ${pushError}`
         );
       }
     }
@@ -120,16 +130,51 @@ function ensureIdentity(): void {
   }
 }
 
-function pushBranch(branch: string, mode: SyncMode): boolean {
-  const args: string[] = ["push", "origin", branch];
+function defaultBranch(): string {
+  const ref = git(["rev-parse", "--abbrev-ref", "origin/HEAD"], true);
+  if (ref && ref.startsWith("origin/")) return ref.slice("origin/".length);
+  return "main";
+}
+
+/**
+ * Pushes to origin. Returns a descriptive error message on failure, or null on
+ * success.
+ *
+ * Deployed servers (Render) check out a bare commit, so git reports a detached
+ * HEAD. Pushing the local `HEAD` ref with an explicit `refs/heads/<branch>`
+ * destination works whether HEAD is attached or detached.
+ */
+function pushBranch(branch: string, mode: SyncMode): string | null {
+  const env = { ...process.env, GIT_TERMINAL_PROMPT: "0" };
+  let args: string[];
   if (mode === "remote") {
     const auth = Buffer.from(
       `x-access-token:${PUSH_TOKEN}`,
       "utf8"
     ).toString("base64");
-    args.unshift("-c", `http.extraheader=AUTHORIZATION: basic ${auth}`);
+    const target = defaultBranch();
+    args = [
+      "-c",
+      `http.extraheader=AUTHORIZATION: basic ${auth}`,
+      "push",
+      "origin",
+      `HEAD:refs/heads/${target}`,
+    ];
+  } else {
+    args = ["push", "origin", branch];
   }
-  return git(args) !== null;
+  try {
+    execFileSync("git", args, {
+      cwd: process.cwd(),
+      env,
+      encoding: "utf8",
+      timeout: 30000,
+      stdio: "pipe",
+    });
+    return null;
+  } catch (err) {
+    return (err as Error).message;
+  }
 }
 
 export function syncCatalogToGit(): boolean {

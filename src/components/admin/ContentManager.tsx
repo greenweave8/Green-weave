@@ -56,13 +56,20 @@ export default function ContentManager({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(patch),
       });
-      const data = (await res.json()) as { error?: string; pushed?: boolean };
+      const data = (await res.json()) as {
+        error?: string;
+        pushed?: boolean;
+      };
       if (!res.ok) {
         setError(data.error ?? "Could not save changes.");
         return;
       }
       if (Object.keys(patch).length === 0) {
         setStatus("No changes to save.");
+      } else if (data.pushed && data.error) {
+        setError(
+          `Saved on the server, but GitHub rejected the push: ${data.error.slice(0, 300)}`
+        );
       } else {
         setStatus(
           data.pushed
