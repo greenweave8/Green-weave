@@ -6,7 +6,6 @@ import Link from "next/link";
 import {
   Check,
   Droplets,
-  Leaf,
   Minus,
   Plus,
   Recycle,
@@ -55,7 +54,6 @@ export default function ProductDetail({ product, related }: ProductDetailProps) 
     { icon: Truck, text: "Free shipping above ₹999 · UPI payments" },
     { icon: Recycle, text: "Plastic-free, recyclable packaging" },
     { icon: ShieldCheck, text: "Easy 7-day returns" },
-    { icon: Leaf, text: "One tree planted per order" },
   ];
 
   return (
@@ -151,12 +149,7 @@ export default function ProductDetail({ product, related }: ProductDetailProps) 
           </p>
 
           <div className="mt-6">
-            <div className="flex items-center justify-between">
-              <p className="text-sm font-semibold text-ink">Select size</p>
-              <button className="text-xs text-forest hover:underline">
-                Size guide
-              </button>
-            </div>
+            <p className="text-sm font-semibold text-ink">Select size</p>
             <div className="mt-3 flex flex-wrap gap-2">
               {product.sizes.map((s) => (
                 <button
