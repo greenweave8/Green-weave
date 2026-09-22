@@ -20,6 +20,8 @@ import { execFileSync } from "child_process";
  */
 
 const PUSH_TOKEN = process.env.GIT_PUSH_TOKEN || "";
+const REPO_URL =
+  process.env.GIT_PUSH_REPO || "https://github.com/greenweave8/Green-weave.git";
 
 /** Error message from the most recent push attempt (null when clean). */
 let lastPushError: string | null = null;
@@ -33,6 +35,12 @@ type SyncMode = "local" | "remote";
 function syncMode(): SyncMode | null {
   if (process.env.GIT_SYNC === "false") return null;
   if (git(["rev-parse", "--is-inside-work-tree"], true) === null) return null;
+  // Deployed servers (Render) often ship a git work tree with no remote.
+  // Make sure origin exists so the push step below can run; this is
+  // idempotent and also keeps canGitSync() honest.
+  if (git(["remote", "get-url", "origin"], true) === null) {
+    if (git(["remote", "add", "origin", REPO_URL]) === null) return null;
+  }
   if (process.env.NODE_ENV === "production") {
     return PUSH_TOKEN ? "remote" : null;
   }
@@ -173,7 +181,13 @@ function pushBranch(branch: string, mode: SyncMode): string | null {
     });
     return null;
   } catch (err) {
-    return (err as Error).message;
+    const b64 = Buffer.from(`x-access-token:${PUSH_TOKEN}`, "utf8").toString(
+      "base64"
+    );
+    let msg = (err as Error).message;
+    if (b64) msg = msg.split(b64).join("[REDACTED]");
+    if (PUSH_TOKEN) msg = msg.split(PUSH_TOKEN).join("[REDACTED]");
+    return msg;
   }
 }
 
