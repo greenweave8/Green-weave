@@ -35,6 +35,7 @@ export async function changeAdminPassword(password: string): Promise<boolean> {
       JSON.stringify({ passwordHash }, null, 2),
       "utf8"
     );
+    console.log(`[auth] Admin password hash saved to ${ADMIN_FILE}`);
     return true;
   } catch (err) {
     console.error("[auth] Could not save admin password:", err);
