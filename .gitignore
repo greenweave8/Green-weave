@@ -20,12 +20,13 @@
 # production
 /build
 
-# local runtime data (orders, users, uploads stay out of git; the
-# product catalog and site content are version controlled so they sync
-# to the repo)
+# local runtime data (orders, users stay out of git; the product catalog,
+# site content, and the admin password hash are version controlled so they
+# sync to the repo and survive deploys)
 /data/*
 !/data/catalog.json
 !/data/content.json
+!/data/admin.json
 
 # user uploads are versioned so they deploy with the site (git-pushed catalog)
 # /public/uploads/

@@ -40,7 +40,10 @@ export default function AdminSettingsForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ oldPassword: current, newPassword: next }),
       });
-      const data = (await res.json()) as { error?: string };
+      const data = (await res.json()) as {
+        error?: string;
+        pushed?: boolean;
+      };
       if (!res.ok) {
         setError(data.error ?? "Could not update the password.");
         return;
@@ -48,7 +51,15 @@ export default function AdminSettingsForm() {
       setCurrent("");
       setNext("");
       setConfirm("");
-      setStatus("Password updated. Use the new password next time you log in.");
+      if (data.pushed) {
+        setStatus("Password updated and pushed to GitHub — it will survive redeploys.");
+      } else {
+        setStatus(
+          data.error
+            ? `Password saved, but it could NOT be pushed to GitHub: ${data.error.slice(0, 200)}. It will reset on the next deploy.`
+            : "Password saved, but it could NOT be pushed to GitHub — it will reset on the next deploy."
+        );
+      }
     } catch {
       setError("Network error. Please try again.");
     } finally {

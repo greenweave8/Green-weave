@@ -5,6 +5,7 @@ import {
   changeAdminPassword,
   isAuthenticatedToken,
 } from "@/lib/auth";
+import { getSyncError } from "@/lib/gitsync";
 
 export const dynamic = "force-dynamic";
 
@@ -43,12 +44,12 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const ok = await changeAdminPassword(newPassword);
+  const { ok, pushed } = await changeAdminPassword(newPassword);
   if (!ok) {
     return NextResponse.json(
       { error: "Could not update the password. Try again." },
       { status: 500 }
     );
   }
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, pushed, error: getSyncError() });
 }

@@ -4,6 +4,7 @@ import { promises as fs } from "fs";
 import path from "path";
 import { DATA_DIR } from "@/lib/paths";
 import { hashPassword, verifyPassword } from "@/lib/user";
+import { syncPathsToGit } from "@/lib/gitsync";
 
 const ENV_PASSWORD = process.env.ADMIN_PASSWORD || "greenweave2026";
 const COOKIE_NAME = "gw_admin";
@@ -26,7 +27,9 @@ export async function adminPasswordMatches(password: string): Promise<boolean> {
   return password === ENV_PASSWORD;
 }
 
-export async function changeAdminPassword(password: string): Promise<boolean> {
+export async function changeAdminPassword(
+  password: string
+): Promise<{ ok: boolean; pushed: boolean }> {
   try {
     const passwordHash = await hashPassword(password);
     await fs.mkdir(DATA_DIR, { recursive: true });
@@ -36,10 +39,14 @@ export async function changeAdminPassword(password: string): Promise<boolean> {
       "utf8"
     );
     console.log(`[auth] Admin password hash saved to ${ADMIN_FILE}`);
-    return true;
+    const pushed = syncPathsToGit(
+      ["data/admin.json"],
+      "Update admin password (admin edit)"
+    );
+    return { ok: true, pushed };
   } catch (err) {
     console.error("[auth] Could not save admin password:", err);
-    return false;
+    return { ok: false, pushed: false };
   }
 }
 
